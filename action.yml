@@ -5,6 +5,12 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  aws-access-key-id:
+     required: true
+     description: "The aws-access-key-id used to authenticate with AWS"
+  aws-secret-access-key:
+     required: true
+     description: "The aws-secret-access-key used to authenticate with AWS"
 outputs:
   random-number:
     description: "Random number"
@@ -32,7 +38,13 @@ runs:
     - name: Run goodbye.sh
       run: goodbye.sh
       shell: bash
-      
+
+    - uses: aws-actions/configure-aws-credentials@v4
+      with:
+        # Actions cannot access secrets so pass them in as inputs
+        aws-access-key-id: ${{ inputs.aws-access-key-id }}
+        aws-secret-access-key: ${{ inputs.aws-secret-access-key }}
+        aws-region: us-east-2  
     - uses: actions/setup-node@v4
       with:
         node-version: 18
@@ -42,5 +54,6 @@ runs:
     - name: Build app
       run: npm run build
       shell: bash
-      
-
+    - name: Upload app to AWS S3
+      run: aws s3 sync build s3://actions-bucket --delete
+      shell: bash
