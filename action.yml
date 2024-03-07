@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: 'Hello World and CD for React App'
+description: 'Greet someone and CD that is called by a workflow that calls this composite action on every PUSH to that external repository'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
