@@ -8,7 +8,6 @@ steps:
       - id: foo
         uses: githubs-free-organization/hello-world-composite-action@main
                 with:
-                  who-to-greet: 'Mona the Octocat'
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
 ```
