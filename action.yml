@@ -33,12 +33,5 @@ runs:
       run: goodbye.sh
       shell: bash
       
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: Install dependencies
-      run: npm ci
-    - name: Build app
-      run: npm run build
       
 
